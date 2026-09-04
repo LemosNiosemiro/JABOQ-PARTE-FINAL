@@ -14,6 +14,6 @@ export default defineConfig({
   server: {
   host: true,
   port: 5173,
-  /*allowedHosts: ["jaboque-festas-6azj.onrender.com"],*/
+  allowedHosts: ["jaboq-parte-final.onrender.com"],
 },
 });
