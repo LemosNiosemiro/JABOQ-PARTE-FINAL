@@ -8,10 +8,12 @@ import { LicenseGate } from "@/features/licensing/LicenseGate";
 
 const LandingPage = lazy(() => import("@/pages/landing"));
 const ExplorePage = lazy(() => import("@/pages/explore"));
+const GalleryPage = lazy(() => import("@/pages/gallery"));
 const CategoriesPage = lazy(() => import("@/pages/categories"));
 const CompanyDetailPage = lazy(() => import("@/pages/company-detail"));
 const HowItWorksPage = lazy(() => import("@/pages/how-it-works"));
 const PlansPage = lazy(() => import("@/pages/plans"));
+const ProgrammerPage = lazy(() => import("@/pages/programmer"));
 const SignInPage = lazy(() => import("@/pages/sign-in"));
 const SignUpPage = lazy(() => import("@/pages/sign-up"));
 const ClientDashboard = lazy(() => import("@/pages/dashboard/client"));
@@ -48,10 +50,12 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/galeria" element={<GalleryPage />} />
             <Route path="/categorias" element={<CategoriesPage />} />
             <Route path="/empresa/:slug" element={<CompanyDetailPage />} />
             <Route path="/como-funciona" element={<HowItWorksPage />} />
             <Route path="/planos" element={<PlansPage />} />
+            <Route path="/programador" element={<ProgrammerPage />} />
             <Route path="/entrar" element={<SignInPage />} />
             <Route path="/registar" element={<SignUpPage />} />
             <Route path="/encomendas" element={<OrdersPage />} />

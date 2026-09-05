@@ -20,6 +20,7 @@ import type {
   OrderItem,
   OrderStatus,
   OrderStatusHistory,
+  AccountType,
 } from "./types";
 import { useAuth } from "./auth";
 
@@ -824,6 +825,25 @@ export function useAdminProfiles() {
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data as Profile[];
+    },
+  });
+}
+
+export function useUpdateAdminProfileType() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, account_type }: { id: string; account_type: AccountType }) => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .update({ account_type })
+        .eq("id", id)
+        .select()
+        .maybeSingle();
+      if (error) throw error;
+      return data as Profile;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin", "profiles"] });
     },
   });
 }

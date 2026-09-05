@@ -17,6 +17,7 @@ import {
   TrendingUp,
   User,
   Loader2,
+  AlertTriangle,
 } from "lucide-react";
 
 import {
@@ -25,6 +26,8 @@ import {
 } from "@/components/layout/dashboard-shell";
 
 import { useAuth } from "@/lib/auth";
+import { useLicense } from "@/features/licensing/license-provider";
+import { Link } from "react-router-dom";
 
 import { AdminOverview } from "./admin/overview";
 import { AdminCompanies } from "./admin/companies";
@@ -34,9 +37,13 @@ import { AdminReports } from "./admin/reports";
 import { LicenseAdminPage } from "./admin/license";
 import { OperationalAdminPage } from "./admin/operational";
 import { PermissionsAdminPage } from "./admin/permissions";
+import { AdminTeam } from "./admin/team";
 
 export default function AdminDashboard() {
   const { profile, loading } = useAuth();
+  const license = useLicense();
+  const licenseDays = Math.ceil((new Date(license.expiresAt).getTime() - Date.now()) / 86400000);
+  const licenseNeedsAttention = licenseDays <= 30 || license.status === "blocked" || license.invoiceStatus !== "paid";
 
   if (loading) {
     return (
@@ -153,6 +160,12 @@ export default function AdminDashboard() {
       title="Painel Administrativo"
       role="Admin"
     >
+      {licenseNeedsAttention && (
+        <div className={`mb-4 flex flex-col gap-3 rounded-xl border p-4 text-sm md:flex-row md:items-center md:justify-between ${licenseDays <= 0 || license.status === "blocked" ? "border-destructive/30 bg-destructive/5" : "border-warning/30 bg-warning/5"}`}>
+          <div className="flex items-start gap-3"><AlertTriangle className={`mt-0.5 h-5 w-5 shrink-0 ${licenseDays <= 0 || license.status === "blocked" ? "text-destructive" : "text-warning"}`} /><div><p className="font-semibold">{licenseDays <= 0 || license.status === "blocked" ? "A licença do sistema está encerrada." : `A licença do sistema termina em ${licenseDays} dias.`}</p><p className="mt-1 text-muted-foreground">Confirme o pagamento com o programador para evitar a suspensão do acesso.</p></div></div>
+          <Link to="/admin/licenca" className="shrink-0 font-semibold text-primary hover:underline">Ver estado da licença</Link>
+        </div>
+      )}
       <Routes>
         <Route
           index
@@ -167,6 +180,11 @@ export default function AdminDashboard() {
         <Route
           path="utilizadores"
           element={<AdminUsers />}
+        />
+
+        <Route
+          path="equipa"
+          element={<AdminTeam />}
         />
 
         <Route

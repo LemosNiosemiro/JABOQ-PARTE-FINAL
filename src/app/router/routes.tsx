@@ -13,10 +13,12 @@ export type AppRoute = RouteObject & {
 const publicRoutes: AppRoute[] = [
   { path: "/", element: null, meta: { public: true } },
   { path: "/explore", element: null, meta: { public: true } },
+  { path: "/galeria", element: null, meta: { public: true } },
   { path: "/empresa/:slug", element: null, meta: { public: true } },
   { path: "/entrar", element: null, meta: { public: true } },
   { path: "/registar", element: null, meta: { public: true } },
   { path: "/planos", element: null, meta: { public: true } },
+  { path: "/programador", element: null, meta: { public: true } },
 ];
 
 const clientRoutes: AppRoute[] = [

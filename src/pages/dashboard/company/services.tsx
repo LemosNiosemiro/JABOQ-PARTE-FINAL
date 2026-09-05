@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, Trash2, Wrench, Pencil } from "lucide-react";
+import { Check, Plus, Sparkles, Trash2, Wrench } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,33 @@ import { useAuth } from "@/lib/auth";
 import { useCompanyByOwner, useCompanyServices, useCreateService, useDeleteService } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 import type { Service } from "@/lib/types";
+
+const serviceSuggestions = [
+  {
+    label: "Económico",
+    title: "Serviço essencial",
+    description: "Uma solução prática para eventos bem organizados e acessíveis.",
+    price: 15000,
+    unit: "evento",
+    tone: "border-success/30 bg-success/5",
+  },
+  {
+    label: "Personalizado",
+    title: "Experiência à medida",
+    description: "Planeamento adaptado ao estilo, dimensão e orçamento de cada evento.",
+    price: 35000,
+    unit: "evento",
+    tone: "border-primary/30 bg-primary/5",
+  },
+  {
+    label: "Premium",
+    title: "Produção completa",
+    description: "Acompanhamento exclusivo com atenção a todos os detalhes da celebração.",
+    price: 75000,
+    unit: "evento",
+    tone: "border-accent/40 bg-accent/10",
+  },
+];
 
 export function CompanyServices() {
   const { profile } = useAuth();
@@ -46,6 +73,16 @@ export function CompanyServices() {
     });
   };
 
+  const useSuggestion = (suggestion: typeof serviceSuggestions[number]) => {
+    setForm({
+      name: suggestion.title,
+      description: suggestion.description,
+      price: suggestion.price,
+      unit: suggestion.unit,
+    });
+    setOpen(true);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -56,6 +93,31 @@ export function CompanyServices() {
         <Button onClick={() => setOpen(true)} className="gap-2">
           <Plus className="h-4 w-4" /> Novo serviço
         </Button>
+      </div>
+
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-accent-foreground" />
+          <h2 className="font-display font-semibold">Comece com uma sugestão</h2>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {serviceSuggestions.map((suggestion) => (
+            <button
+              key={suggestion.label}
+              type="button"
+              onClick={() => useSuggestion(suggestion)}
+              className={`rounded-xl border p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${suggestion.tone}`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{suggestion.label}</span>
+                <Plus className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <p className="mt-2 font-semibold">{suggestion.title}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{suggestion.description}</p>
+              <p className="mt-3 text-sm font-bold text-primary">{formatCurrency(suggestion.price)} / {suggestion.unit}</p>
+            </button>
+          ))}
+        </div>
       </div>
 
       {services && services.length > 0 ? (

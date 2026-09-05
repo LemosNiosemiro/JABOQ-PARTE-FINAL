@@ -6,6 +6,7 @@ Este backend implementa um sistema seguro onde **apenas você (programador/admin
 - Renovar licenças de clientes
 - Bloquear licenças  
 - Atualizar status de faturas
+- Consultar licenças ativas, pagamentos e datas de expiração
 
 Os clientes **NÃO têm acesso** a estes endpoints.
 
@@ -20,6 +21,10 @@ npm run dev
 ```
 
 O backend estará disponível em `http://localhost:4000`
+
+Na aplicação, o link **Programador** no rodapé abre `/programador`. Essa área pede a
+`PROGRAMMER_KEY` e permite consultar e renovar a licença da plataforma e as licenças
+institucionais.
 
 ---
 
@@ -85,6 +90,23 @@ curl http://localhost:4000/api/operations
 Para usar estes endpoints, você **deve** enviar a chave de admin no header:
 
 ```
+
+### Área privada do programador
+
+Use a chave definida em `PROGRAMMER_KEY` no cabeçalho `Authorization: Bearer ...`:
+
+```bash
+curl http://localhost:4000/api/programmer/licenses \
+  -H "Authorization: Bearer sua-programmer-key"
+
+curl -X POST http://localhost:4000/api/programmer/license/renew \
+  -H "Authorization: Bearer sua-programmer-key" \
+  -H "Content-Type: application/json" \
+  -d '{"plan":"growth","days":365}'
+```
+
+O painel administrativo mostra um aviso quando faltam 30 dias ou menos, quando o
+pagamento está pendente ou quando a licença foi encerrada.
 Authorization: Bearer sua-chave-admin-secreta
 ```
 
@@ -142,6 +164,14 @@ ADMIN_KEY=seu-chave-admin-secreta-aqui-mude-em-producao
 ADMIN_KEY=<gere-uma-chave-longa-e-aleatória-forte>
 ```
 
+### Chave do programador
+
+```env
+PROGRAMMER_KEY=<gere-uma-chave-longa-e-aleatória-forte-e-diferente>
+```
+
+Essa chave nunca deve ser colocada no código frontend nem partilhada com clientes.
+
 ---
 
 ## ❌ Se Não Tiver Chave de Admin
@@ -177,7 +207,7 @@ curl -X POST http://localhost:4000/api/license/renew \
 ## 📝 Próximos Passos
 
 - [ ] Implementar autenticação real (JWT, sessions)
-- [ ] Conectar a base de dados para persistência
+- [ ] Conectar licenças e faturas a uma base de dados para persistência (o estado atual do backend reinicia em memória)
 - [ ] Implementar sistema de pagamento (Stripe, Paypal)
 - [ ] Logs de auditoria para renovações
 - [ ] Webhooks para eventos de licença

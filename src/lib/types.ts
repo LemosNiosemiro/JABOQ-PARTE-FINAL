@@ -1,4 +1,5 @@
 export type UserRole = "client" | "company" | "admin";
+export type AccountType = "standard" | "collaborator" | "fixed_employee" | "institutional_client";
 
 export type LicenseStatus = "active" | "trial" | "expired" | "blocked";
 export type LicensePlan = "starter" | "growth" | "premium" | "enterprise";
@@ -33,6 +34,7 @@ export interface Profile {
   phone: string | null;
   avatar_url: string | null;
   role: UserRole;
+  account_type: AccountType;
   city: string | null;
   province: string | null;
   bio: string | null;

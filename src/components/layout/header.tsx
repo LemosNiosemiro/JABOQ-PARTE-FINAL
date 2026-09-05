@@ -89,6 +89,7 @@ export function Header() {
         <nav className="hidden lg:flex items-center gap-1 ml-auto">
           <NavLink to="/encomendas" label="Encomendas" />
           <NavLink to="/explore" label="Explorar" />
+          <NavLink to="/galeria" label="Galeria" />
           <NavLink to="/categorias" label="Categorias" />
           <NavLink to="/planos" label="Planos" />
           <NavLink to="/como-funciona" label="Como Funciona" />
@@ -201,6 +202,7 @@ export function Header() {
             {profile && <MobileLink to={dashboardLink} label="Painel" />}
             {profile && <MobileLink to="/painel/historico" label="Histórico" />}
             <MobileLink to="/explore" label="Explorar" />
+            <MobileLink to="/galeria" label="Galeria" />
             <MobileLink to="/categorias" label="Categorias" />
             <MobileLink to="/planos" label="Planos" />
             <MobileLink to="/como-funciona" label="Como Funciona" />

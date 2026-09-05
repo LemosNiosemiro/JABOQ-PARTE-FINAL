@@ -64,10 +64,11 @@ export function Footer() {
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} JABOQUE. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">Termos de Uso</a>
             <a href="#" className="hover:text-primary transition-colors">Privacidade</a>
             <a href="#" className="hover:text-primary transition-colors">LGPD</a>
+            <Link to="/programador" className="font-semibold hover:text-primary transition-colors">Programador</Link>
           </div>
         </div>
       </div>

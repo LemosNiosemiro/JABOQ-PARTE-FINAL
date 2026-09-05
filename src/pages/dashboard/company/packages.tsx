@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, Trash2, Package, Check, X } from "lucide-react";
+import { Check, Package, Plus, Sparkles, Trash2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,30 @@ import { useAuth } from "@/lib/auth";
 import { useCompanyByOwner, useCompanyPackages, useCreatePackage, useDeletePackage } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 import type { Package as PackageType } from "@/lib/types";
+
+const packageSuggestions = [
+  {
+    label: "Brilho Essencial",
+    description: "O essencial para uma celebração bonita, funcional e económica.",
+    items: ["Decoração base", "Som ambiente", "Coordenação durante 4 horas"],
+    price: 45000,
+    tone: "border-success/30 bg-success/5",
+  },
+  {
+    label: "Memória Personalizada",
+    description: "Uma experiência desenhada para combinar com a identidade do seu evento.",
+    items: ["Decoração personalizada", "Fotografia do evento", "Coordenação durante 6 horas"],
+    price: 85000,
+    tone: "border-primary/30 bg-primary/5",
+  },
+  {
+    label: "Brilho Completo",
+    description: "O pacote premium para transformar cada momento numa experiência memorável.",
+    items: ["Decoração premium", "DJ e iluminação", "Fotografia e vídeo", "Coordenação integral"],
+    price: 150000,
+    tone: "border-accent/40 bg-accent/10",
+  },
+];
 
 export function CompanyPackages() {
   const { profile } = useAuth();
@@ -47,6 +71,16 @@ export function CompanyPackages() {
     });
   };
 
+  const useSuggestion = (suggestion: typeof packageSuggestions[number]) => {
+    setForm({
+      name: suggestion.label,
+      description: suggestion.description,
+      price: suggestion.price,
+      itemsText: suggestion.items.join("\n"),
+    });
+    setOpen(true);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -57,6 +91,38 @@ export function CompanyPackages() {
         <Button onClick={() => setOpen(true)} className="gap-2">
           <Plus className="h-4 w-4" /> Novo pacote
         </Button>
+      </div>
+
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-accent-foreground" />
+          <h2 className="font-display font-semibold">Pacotes prontos para personalizar</h2>
+        </div>
+        <div className="grid gap-3 lg:grid-cols-3">
+          {packageSuggestions.map((suggestion) => (
+            <button
+              key={suggestion.label}
+              type="button"
+              onClick={() => useSuggestion(suggestion)}
+              className={`rounded-xl border p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${suggestion.tone}`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <Package className="h-5 w-5 text-primary" />
+                  <p className="mt-2 font-semibold">{suggestion.label}</p>
+                </div>
+                <Plus className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{suggestion.description}</p>
+              <ul className="mt-3 space-y-1 text-xs text-muted-foreground">
+                {suggestion.items.map((item) => (
+                  <li key={item} className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-success" />{item}</li>
+                ))}
+              </ul>
+              <p className="mt-3 text-sm font-bold text-primary">{formatCurrency(suggestion.price)}</p>
+            </button>
+          ))}
+        </div>
       </div>
 
       {packages && packages.length > 0 ? (

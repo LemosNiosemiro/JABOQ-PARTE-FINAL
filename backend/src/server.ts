@@ -16,6 +16,7 @@ const app = express();
 const port = Number(process.env.PORT || 4000);
 const ADMIN_KEY = process.env.ADMIN_KEY || "jaboque-admin-secret-key-change-me";
 const JABOQUE_KEY = process.env.JABOQUE_KEY || "jaboque-client-key-change-me";
+const PROGRAMMER_KEY = process.env.PROGRAMMER_KEY || JABOQUE_KEY;
 
 // Middlewares
 app.use(express.json());
@@ -198,6 +199,14 @@ function requireJaboqueKey(req: Request, res: Response, next: NextFunction): voi
   next();
 }
 
+function requireProgrammerKey(req: Request, res: Response, next: NextFunction): void {
+  if (getBearerToken(req) !== PROGRAMMER_KEY) {
+    res.status(401).json({ ok: false, error: "UNAUTHORIZED", message: "Chave do programador inválida ou ausente" });
+    return;
+  }
+  next();
+}
+
 // ============ HELPERS ============
 
 const getLicenseState = () => {
@@ -278,13 +287,17 @@ app.get("/api/license", (_req: Request, res: Response) => {
   });
 });
 
-// GET Licenças das empresas - gestão exclusiva da Jaboque
-app.get("/api/company-licenses", requireJaboqueKey, (_req: Request, res: Response) => {
+// GET Licenças das empresas - gestão exclusiva do programador
+app.get("/api/company-licenses", requireProgrammerKey, (_req: Request, res: Response) => {
   res.json({
     ok: true,
     platformLicense: getLicenseState(),
     licenses: companyLicenses.map(getCompanyLicenseState),
   });
+});
+
+app.get("/api/programmer/licenses", requireProgrammerKey, (_req: Request, res: Response) => {
+  res.json({ ok: true, licenses: { platformLicense: getLicenseState(), licenses: companyLicenses.map(getCompanyLicenseState) } });
 });
 
 // GET Resumo Financeiro - público
@@ -354,6 +367,17 @@ app.post("/api/license/renew", requireAdminKey, (req: Request, res: Response) =>
   });
 });
 
+app.post("/api/programmer/license/renew", requireProgrammerKey, (req: Request, res: Response) => {
+  const { plan = "growth", days = 365 } = req.body ?? {};
+  if (!["starter", "growth", "premium", "enterprise"].includes(plan) || !Number.isInteger(days) || days < 1 || days > 3660) {
+    res.status(400).json({ ok: false, error: "INVALID_LICENSE", message: "Plano ou duração de licença inválidos" });
+    return;
+  }
+  const now = new Date();
+  platformLicense = { ...platformLicense, status: "active", plan, issuedAt: now.toISOString(), expiresAt: new Date(now.getTime() + days * 86400000).toISOString(), invoiceStatus: "paid" };
+  res.json({ ok: true, message: "Licença da plataforma renovada", license: getLicenseState() });
+});
+
 // PATCH Bloquear Licença - APENAS ADMIN COM CHAVE SECRETA
 app.patch("/api/license/block", requireAdminKey, (req: Request, res: Response) => {
   platformLicense.status = "blocked";
@@ -365,7 +389,7 @@ app.patch("/api/license/block", requireAdminKey, (req: Request, res: Response) =
 });
 
 // Renovar licença de empresa - APENAS A JABOQUE
-app.post("/api/company-licenses/:companyId/renew", requireJaboqueKey, (req: Request, res: Response) => {
+app.post("/api/company-licenses/:companyId/renew", requireProgrammerKey, (req: Request, res: Response) => {
   const license = companyLicenses.find((item) => item.companyId === req.params.companyId);
   const { plan = license?.plan || "starter", days = 30 } = req.body ?? {};
 
