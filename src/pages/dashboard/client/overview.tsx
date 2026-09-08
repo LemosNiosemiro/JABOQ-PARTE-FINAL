@@ -98,7 +98,7 @@ export function ClientOverview() {
             {bookings.slice(0, 4).map((booking) => (
               <div key={booking.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
                 <div className="min-w-0">
-                  <p className="font-semibold text-sm truncate">{booking.company?.name}</p>
+                  <p className="font-semibold text-sm truncate">JABOQUE</p>
                   <p className="text-xs text-muted-foreground">{formatDate(booking.event_date)}</p>
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
@@ -114,7 +114,7 @@ export function ClientOverview() {
           <div className="text-center py-8">
             <ShoppingBag className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
             <p className="text-sm text-muted-foreground mb-4">Nenhum orçamento solicitado ainda</p>
-            <Button asChild><Link to="/explore">Explorar fornecedores</Link></Button>
+            <Button asChild><Link to="/explore">Explorar serviços</Link></Button>
           </div>
         )}
       </Card>

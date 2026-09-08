@@ -12,8 +12,11 @@ export default defineConfig({
   },
 
   server: {
-  host: true,
-  port: 5173,
-  allowedHosts: ["jaboq-parte-final.onrender.com"],
-},
+    host: true,
+    port: 5173,
+    allowedHosts: ["jaboq-parte-final.onrender.com"],
+    proxy: {
+      "/api": "http://localhost:4000",
+    },
+  },
 });

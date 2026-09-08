@@ -40,7 +40,7 @@ export function ClientMessages() {
     <div className="space-y-6">
       <div>
         <h1 className="font-display text-2xl font-bold">Mensagens</h1>
-        <p className="text-muted-foreground mt-1">Converse com os fornecedores</p>
+        <p className="text-muted-foreground mt-1">Fale com a equipa JABOQUE sobre o seu evento</p>
       </div>
 
       <div className="grid lg:grid-cols-[320px_1fr] gap-4 h-[600px]">
@@ -100,7 +100,7 @@ export function ClientMessages() {
                       </Avatar>
                       <div>
                         <p className="font-semibold text-sm">{conv.otherUser.full_name}</p>
-                        {conv.company && <p className="text-xs text-muted-foreground">{conv.company.name}</p>}
+                        <p className="text-xs text-muted-foreground">Equipa JABOQUE</p>
                       </div>
                     </>
                   );
@@ -149,7 +149,7 @@ export function ClientMessages() {
               <EmptyState
                 icon={MessageCircle}
                 title="Selecione uma conversa"
-                description="Escolha uma conversa à esquerda ou entre em contato com um fornecedor."
+                description="Escolha uma conversa à esquerda para falar com a equipa JABOQUE."
               />
             </div>
           )}

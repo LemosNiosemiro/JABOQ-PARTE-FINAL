@@ -29,68 +29,68 @@ function generateResponse(userMessage: string): Recommendation {
 
   if (msg.includes("casamento") || msg.includes("casamentos")) {
     return {
-      text: "Para organizar um casamento na JABOQUE, recomendo combinar os seguintes serviços:\n\n1. **Espaço para eventos** - Salão Cristal Eventos (a partir de Kz 100.000)\n2. **Decoração** - Decora Festas Angola (a partir de Kz 50.000)\n3. **Buffet** - Sabores Buffet Premium (a partir de Kz 80.000)\n4. **Fotografia** - FotoMemória Estúdio (a partir de Kz 40.000)\n5. **DJ** - DJ Luís Mixmaster (a partir de Kz 30.000)\n\nPode solicitar orçamentos diretamente de cada empresa na página deles!",
+      text: "Para organizar um casamento na JABOQUE, podemos combinar espaço, decoração, buffet, fotografia e música numa solução completa.\n\nA nossa equipa prepara uma proposta de acordo com a data, o local, o número de convidados e o seu orçamento. Crie o evento no seu painel para começarmos!",
       estimate: "Orçamento estimado: Kz 300.000 - Kz 800.000",
     };
   }
 
   if (msg.includes("dj") || msg.includes("música") || msg.includes("musica")) {
     return {
-      text: "Para um DJ, recomendo o **DJ Luís Mixmaster** - avaliação 4.7★ com 38 avaliações.\n\nServiços disponíveis:\n- DJ 4 horas: Kz 50.000\n- DJ 6 horas: Kz 80.000\n- DJ + Iluminação: Kz 120.000\n\nTambém oferece o Pack Festa Animada (DJ + iluminação + efeitos) por Kz 150.000.\n\nAceda à página dele para solicitar orçamento!",
+      text: "A JABOQUE pode incluir música e animação no seu evento.\n\nPodemos preparar opções de DJ, iluminação e efeitos conforme a duração e o estilo da celebração. Crie o seu evento e indique o que pretende na descrição.",
       estimate: "Orçamento: Kz 50.000 - Kz 150.000",
     };
   }
 
   if (msg.includes("buffet") || msg.includes("comida") || msg.includes("100 pessoas") || msg.includes("orçamento")) {
     return {
-      text: "Para buffet, a **Sabores Buffet Premium** é a melhor opção (4.9★):\n\n- Buffet 50 pessoas: Kz 150.000\n- Buffet 100 pessoas: Kz 280.000\n- Buffet 200 pessoas: Kz 500.000\n\nTambém tem o Pack Buffet + Serviço (100 convidados com serviço de mesa) por Kz 350.000.\n\nPara um evento de 100 pessoas, recomendo o buffet de 100 pessoas ou o pack completo.",
+      text: "A JABOQUE pode organizar o buffet do seu evento.\n\nPara 100 pessoas, a proposta depende do menu, do tipo de serviço e da duração. Registe o evento com o número de convidados para receber uma solução adequada.",
       estimate: "Orçamento para 100 pessoas: Kz 280.000 - Kz 350.000",
     };
   }
 
   if (msg.includes("aniversário") || msg.includes("aniversario")) {
     return {
-      text: "Para um aniversário, sugiro esta combinação:\n\n1. **Decoração** - Decora Festas Angola (Pack Aniversário Completo: Kz 200.000)\n2. **Bolo** - Doce Vida Bolos Artísticos (a partir de Kz 15.000)\n3. **DJ** - DJ Luís Mixmaster (a partir de Kz 50.000)\n4. **Fotografia** - FotoMemória Estúdio (a partir de Kz 60.000)\n\nPode também alugar um espaço: Salão Cristal Eventos (a partir de Kz 100.000).",
+      text: "Para um aniversário, a JABOQUE pode tratar da decoração, bolo, música, fotografia e espaço numa única proposta.\n\nIndique a data, o número de convidados e o ambiente que deseja para prepararmos as opções certas.",
       estimate: "Orçamento estimado: Kz 100.000 - Kz 400.000",
     };
   }
 
   if (msg.includes("como funciona") || msg.includes("plataforma") || msg.includes("ajuda")) {
     return {
-      text: "A JABOQUE é simples de usar:\n\n1. **Pesquise** fornecedores por categoria, cidade e preço\n2. **Compare** avaliações e preços\n3. **Solicite orçamento** diretamente da página da empresa\n4. **Converse** com os fornecedores pelo chat\n5. **Celebre** o seu evento!\n\nPara empresas: cadastre-se gratuitamente e comece a receber pedidos. Tem planos Premium para maior destaque.\n\nPrecisa de ajuda com algo específico?",
+      text: "A JABOQUE cuida do seu evento de ponta a ponta:\n\n1. **Crie** o seu evento com data, local e convidados\n2. **Descreva** o que gostaria de realizar\n3. **Receba** uma proposta da equipa JABOQUE\n4. **Acompanhe** tudo pelo seu painel\n5. **Celebre** sem ter de coordenar vários serviços!\n\nPrecisa de ajuda com algo específico?",
     };
   }
 
   if (msg.includes("decoração") || msg.includes("decoracao")) {
     return {
-      text: "Para decoração, recomendo a **Decora Festas Angola** (4.8★, 47 avaliações):\n\n- Decoração Básica: Kz 50.000\n- Decoração Premium: Kz 150.000\n- Decoração Luxo: Kz 300.000\n- Pack Aniversário Completo: Kz 200.000\n\nEspecialistas em balões, flores, iluminação e ambientação completa.",
+      text: "A JABOQUE prepara a decoração do seu evento com opções de balões, flores, iluminação e ambientação completa.\n\nAo criar o evento, descreva o estilo que deseja e a nossa equipa monta uma proposta para si.",
       estimate: "Orçamento: Kz 50.000 - Kz 300.000",
     };
   }
 
   if (msg.includes("bolo") || msg.includes("bolos") || msg.includes("doces")) {
     return {
-      text: "Para bolos e doces, a **Doce Vida Bolos Artísticos** (4.8★) é excelente:\n\n- Bolo 1 andar: Kz 15.000\n- Bolo 3 andares: Kz 65.000\n- Mesa de Doces (200 doces): Kz 35.000\n\nCada bolo é feito sob medida. Acede à página deles para ver a galeria!",
+      text: "A JABOQUE pode incluir bolos e doces feitos sob medida na proposta do seu evento.\n\nInforme o número de convidados e o estilo que deseja para receber uma sugestão adequada.",
       estimate: "Orçamento: Kz 15.000 - Kz 100.000",
     };
   }
 
   if (msg.includes("espaço") || msg.includes("espaco") || msg.includes("salão") || msg.includes("salao")) {
     return {
-      text: "Para espaços, o **Salão Cristal Eventos** (4.6★) é a melhor opção:\n\n- Aluguel 4h: Kz 100.000\n- Aluguel dia todo: Kz 250.000\n- Pack Salão + Decoração: Kz 400.000\n- Pack Evento Chave-na-Mão: Kz 800.000\n\nCapacidade para 500 pessoas, climatizado, com estacionamento.",
+      text: "A JABOQUE pode ajudar a encontrar e preparar o espaço ideal para o seu evento, incluindo decoração e estrutura.\n\nDiga-nos a cidade, a data e o número de convidados para avaliarmos a melhor solução.",
       estimate: "Orçamento: Kz 100.000 - Kz 800.000",
     };
   }
 
   if (msg.includes("fotografia") || msg.includes("fotógrafo") || msg.includes("fotografo") || msg.includes("filmagem")) {
     return {
-      text: "Para fotografia, a **FotoMemória Estúdio** (4.9★) é altamente recomendada:\n\n- Fotografia 4h: Kz 60.000\n- Fotografia + Filmagem: Kz 150.000\n- Pack Casamento Premium: Kz 250.000\n\nInclui álbum digital, prints e entrega rápida.",
+      text: "A JABOQUE pode incluir fotografia e filmagem no serviço do seu evento, com cobertura ajustada à duração e aos momentos que deseja guardar.\n\nIndique as suas prioridades na descrição do evento.",
       estimate: "Orçamento: Kz 60.000 - Kz 250.000",
     };
   }
 
   return {
-    text: "Sou a JABOQUE, assistente virtual para ajudar a organizar o seu evento!\n\nPosso ajudar com:\n- Recomendações de fornecedores ( decoração, buffet, fotografia...)\n- Estimativas de orçamento\n- Combinações de serviços para o seu evento\n- Dúvidas sobre a plataforma\n\nO que precisa para o seu evento?",
+    text: "Sou a JABOQUE, assistente virtual para ajudar a organizar o seu evento!\n\nPosso ajudar com:\n- Soluções completas de decoração, buffet e animação\n- Estimativas de orçamento\n- Combinações de serviços para o seu evento\n- Dúvidas sobre a plataforma\n\nO que precisa para o seu evento?",
   };
 }
 
@@ -100,7 +100,7 @@ export function AIAssistant() {
     {
       id: "1",
       role: "assistant",
-      content: "Olá! Sou a JABOQUE, a sua assistente virtual. Posso recomendar fornecedores, estimar orçamentos e ajudar a planear o seu evento. Como posso ajudar?",
+      content: "Olá! Sou a JABOQUE, a sua assistente virtual. Posso preparar soluções para o seu evento, estimar orçamentos e ajudar no planeamento. Como posso ajudar?",
     },
   ]);
   const [input, setInput] = useState("");

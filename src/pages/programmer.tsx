@@ -26,7 +26,7 @@ interface LicensePayload {
   licenses: CompanyLicense[];
 }
 
-const API_URL = "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 function daysUntil(date: string) {
   return Math.ceil((new Date(date).getTime() - Date.now()) / 86400000);
@@ -54,14 +54,16 @@ export default function ProgrammerPage() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(`${API_URL}/api/programmer/licenses`, { headers: { Authorization: `Bearer ${accessKey}` } });
+      const response = await fetch(`${API_URL}/programmer/licenses`, { headers: { Authorization: `Bearer ${accessKey}` } });
       if (!response.ok) throw new Error(response.status === 401 ? "Chave do programador inválida." : "Não foi possível carregar as licenças.");
       const payload = await response.json() as { licenses: LicensePayload };
       setData(payload.licenses);
       sessionStorage.setItem("jaboque_programmer_key", accessKey);
       setKey(accessKey);
     } catch (requestError) {
-      setError(requestError instanceof Error ? requestError.message : "Falha de ligação ao servidor.");
+      setError(requestError instanceof Error && requestError.message === "Failed to fetch"
+        ? "Não foi possível ligar ao backend. Confirme se o servidor está ativo e se VITE_API_URL está correto."
+        : requestError instanceof Error ? requestError.message : "Falha de ligação ao servidor.");
       setData(null);
     } finally {
       setLoading(false);
@@ -80,7 +82,7 @@ export default function ProgrammerPage() {
     setActionId(url);
     setError("");
     try {
-      const response = await fetch(`${API_URL}${url}`, { ...options, headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}`, ...(options?.headers ?? {}) } });
+      const response = await fetch(`${API_URL}${url.replace(/^\/api/, "")}`, { ...options, headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}`, ...(options?.headers ?? {}) } });
       if (!response.ok) throw new Error("A operação não foi autorizada ou falhou.");
       await loadLicenses(key);
     } catch (requestError) {

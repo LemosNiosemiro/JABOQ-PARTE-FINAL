@@ -28,8 +28,8 @@ export default function HowItWorksPage() {
         </h1>
 
         <p className="mt-3 text-muted-foreground">
-          A plataforma que simplifica a organização de eventos. Encontre
-          fornecedores, compare preços e celebre.
+          A JABOQUE simplifica a organização de eventos ao assumir toda a
+          coordenação numa única experiência.
         </p>
       </div>
 
@@ -43,18 +43,18 @@ export default function HowItWorksPage() {
           {[
             {
               icon: Search,
-              title: "Pesquise fornecedores",
-              desc: "Use filtros por categoria, cidade, preço e avaliação para encontrar o fornecedor perfeito.",
+              title: "Conte-nos o que precisa",
+              desc: "Crie o seu evento com a data, o local, o número de convidados e as suas preferências.",
             },
             {
               icon: MessageCircle,
-              title: "Solicite orçamento",
-              desc: "Entre em contacto direto com os fornecedores, tire dúvidas e receba propostas personalizadas.",
+              title: "Receba uma proposta JABOQUE",
+              desc: "A nossa equipa combina os serviços necessários e apresenta uma solução personalizada.",
             },
             {
               icon: PartyPopper,
               title: "Celebre o seu evento",
-              desc: "Confirme a reserva, acompanhe os detalhes e desfrute do seu evento sem preocupações.",
+              desc: "Confirme os detalhes, acompanhe tudo no seu painel e desfrute do evento sem preocupações.",
             },
           ].map((step, i) => (
             <motion.div
@@ -89,25 +89,25 @@ export default function HowItWorksPage() {
       {/* Steps for companies */}
       <div className="max-w-4xl mx-auto mb-16">
         <h2 className="font-display text-2xl font-bold mb-8 text-center">
-          Para empresas
+          Para a equipa JABOQUE
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               icon: FileText,
-              title: "Cadastre sua empresa",
-              desc: "Crie o perfil da sua empresa, adicione fotos, serviços e pacotes para atrair clientes.",
+              title: "Planeie a solução",
+              desc: "A equipa interna analisa cada pedido e coordena os serviços necessários para o evento.",
             },
             {
               icon: MessageCircle,
-              title: "Receba pedidos",
-              desc: "Receba solicitações de orçamento de clientes interessados e responda diretamente.",
+              title: "Coordene a execução",
+              desc: "Os detalhes operacionais são acompanhados internamente pela JABOQUE.",
             },
             {
               icon: Star,
-              title: "Cresça com avaliações",
-              desc: "Receba avaliações dos seus clientes e destaque-se na plataforma com o selo de verificação.",
+              title: "Entregue uma experiência completa",
+              desc: "O cliente acompanha uma única marca e recebe suporte durante todo o processo.",
             },
           ].map((step, i) => (
             <motion.div
@@ -150,17 +150,17 @@ export default function HowItWorksPage() {
             {
               icon: Shield,
               title: "Segurança garantida",
-              desc: "Fornecedores verificados e pagamentos seguros.",
+              desc: "Uma equipa responsável acompanha o seu pedido do início ao fim.",
             },
             {
               icon: Star,
               title: "Avaliações reais",
-              desc: "Feedback de clientes reais para tomar a melhor decisão.",
+              desc: "Registe o seu evento e receba uma proposta adequada às suas prioridades.",
             },
             {
               icon: Heart,
               title: "Favoritos",
-              desc: "Salve os seus fornecedores preferidos para comparar depois.",
+              desc: "Guarde as soluções JABOQUE que mais combinam com o seu evento.",
             },
             {
               icon: Calendar,
@@ -192,7 +192,7 @@ export default function HowItWorksPage() {
 
       <div className="text-center mt-12">
         <Button size="xl" asChild>
-          <Link to="/explore">
+          <Link to="/registar">
             Começar agora
             <ArrowRight className="h-5 w-5" />
           </Link>

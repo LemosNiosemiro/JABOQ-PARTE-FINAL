@@ -15,8 +15,7 @@ export function Footer() {
               <span className="font-display text-xl font-bold">JABOQUE</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              A plataforma completa para organizar e personalizar festas e eventos. Encontre os melhores
-              Pacotes num só lugar.
+              A equipa completa para organizar e personalizar festas e eventos. Planeie tudo com a JABOQUE.
             </p>
             <div className="flex gap-3">
               <a href="#" className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors">
@@ -42,11 +41,11 @@ export function Footer() {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-display font-semibold text-sm">Para Empresas</h4>
+            <h4 className="font-display font-semibold text-sm">Atendimento JABOQUE</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/registar?tipo=empresa" className="hover:text-primary transition-colors">Cadastrar Empresa</Link></li>
-              <li><Link to="/planos" className="hover:text-primary transition-colors">Planos Premium</Link></li>
-              <li><Link to="/empresa" className="hover:text-primary transition-colors">Painel da Empresa</Link></li>
+              <li><Link to="/registar" className="hover:text-primary transition-colors">Criar o meu evento</Link></li>
+              <li><Link to="/como-funciona" className="hover:text-primary transition-colors">Como funciona</Link></li>
+              <li><Link to="/painel/mensagens" className="hover:text-primary transition-colors">Falar com a equipa</Link></li>
             </ul>
           </div>
 

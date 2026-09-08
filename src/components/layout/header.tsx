@@ -80,7 +80,7 @@ export function Header() {
             <Input
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Buscar fornecedores..."
+              placeholder="Buscar soluções JABOQUE..."
               className="pl-9 bg-muted/50 border-transparent focus-visible:border-input"
             />
           </div>
@@ -193,7 +193,7 @@ export function Header() {
                 <Input
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder="Buscar fornecedores..."
+                  placeholder="Buscar soluções JABOQUE..."
                   className="pl-9"
                 />
               </div>

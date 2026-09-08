@@ -23,9 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { StarRating } from "@/components/ui/star-rating";
-import { CompanyCard } from "@/components/company-card";
-import { useCategories, useFeaturedCompanies } from "@/lib/queries";
-import { formatCurrency } from "@/lib/utils";
+import { useCategories } from "@/lib/queries";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +36,6 @@ const categoryIcons: Record<string, string> = {
 
 export default function LandingPage() {
   const { data: categories } = useCategories();
-  const { data: featuredCompanies } = useFeaturedCompanies(8);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
@@ -78,8 +75,8 @@ export default function LandingPage() {
               Organize eventos <span className="gradient-text">impecáveis</span> sem complicação
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
-              Encontre os melhores fornecedores de decoração, buffet, DJs, fotógrafos e muito mais.
-              Tudo num só lugar, com orçamentos instantâneos e reservas online.
+              Conte com a JABOQUE para organizar decoração, buffet, música, fotografia e muito mais.
+              Uma equipa acompanha o seu evento do planeamento à celebração.
             </p>
           </motion.div>
 
@@ -129,7 +126,7 @@ export default function LandingPage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-success" /> +500 fornecedores verificados
+              <CheckCircle2 className="h-4 w-4 text-success" /> Soluções completas para o seu evento
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-success" /> Reservas online seguras
@@ -171,20 +168,26 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Featured Companies */}
+      {/* JABOQUE services */}
       <section className="container py-16">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
-            <h2 className="font-display text-3xl font-bold">Empresas em destaque</h2>
-            <p className="mt-2 text-muted-foreground">Os fornecedores mais bem avaliados da plataforma</p>
+            <h2 className="font-display text-3xl font-bold">Tudo para o seu evento</h2>
+            <p className="mt-2 text-muted-foreground">Escolha o que precisa e deixe a proposta com a JABOQUE</p>
           </div>
           <Button variant="outline" asChild>
-            <Link to="/explore">Ver todos <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/explore">Ver soluções <ArrowRight className="h-4 w-4" /></Link>
           </Button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {featuredCompanies?.map((company, i) => (
-            <CompanyCard key={company.id} company={company} index={i} />
+          {categories?.slice(0, 8).map((category, i) => (
+            <Link key={category.id} to={`/explore?category=${category.id}`}>
+              <Card className="p-6 h-full hover:shadow-md hover:border-primary/40 transition-all">
+                <div className="text-3xl mb-4">{categoryIcons[category.slug] ?? "✨"}</div>
+                <h3 className="font-display font-semibold">{category.name}</h3>
+                <p className="text-sm text-muted-foreground mt-2">Incluído na proposta personalizada da JABOQUE.</p>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
@@ -199,9 +202,9 @@ export default function LandingPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { icon: Search, title: "1. Pesquise", desc: "Busque fornecedores por categoria, cidade e orçamento. Compare preços e avaliações." },
-              { icon: Calendar, title: "2. Solicite orçamento", desc: "Entre em contato direto com os fornecedores e solicite um orçamento personalizado." },
-              { icon: PartyPopper, title: "3. Celebre", desc: "Confirme a reserva, receba os serviços e desfrute do seu evento sem preocupações." },
+              { icon: Search, title: "1. Conte-nos o que precisa", desc: "Registe o seu evento com a data, local, convidados e o resultado que deseja." },
+              { icon: Calendar, title: "2. Receba a proposta JABOQUE", desc: "A nossa equipa combina os serviços e prepara uma solução ajustada ao seu evento." },
+              { icon: PartyPopper, title: "3. Celebre", desc: "Acompanhe tudo pelo seu painel e desfrute do evento sem coordenar várias equipas." },
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -226,7 +229,7 @@ export default function LandingPage() {
       <section className="container py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { icon: Users, value: "+500", label: "Fornecedores ativos" },
+            { icon: Users, value: "1", label: "Equipa JABOQUE" },
             { icon: Calendar, value: "+2.000", label: "Eventos realizados" },
             { icon: Star, value: "4.8", label: "Avaliação média" },
             { icon: MapPin, value: "18", label: "Cidades cobertas" },
@@ -258,9 +261,9 @@ export default function LandingPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { name: "Mariana Domingos", event: "Casamento", text: "A JABOQUE transformou o planeamento do meu casamento. Encontrei todos os fornecedores num só lugar e economizei muito tempo.", rating: 5 },
-              { name: "Carlos Mendes", event: "Aniversário infantil", text: "Simplesmente incrível! Solicitei 3 orçamentos em minutos e comparei preços facilmente. O evento foi um sucesso total.", rating: 5 },
-              { name: "Sofia Lopes", event: "Evento corporativo", text: "Como organizadora de eventos, a JABOQUE tornou o meu trabalho muito mais eficiente. Plataforma essencial!", rating: 5 },
+              { name: "Mariana Domingos", event: "Casamento", text: "A JABOQUE tratou de toda a organização do meu casamento. Tive uma única equipa para acompanhar cada detalhe.", rating: 5 },
+              { name: "Carlos Mendes", event: "Aniversário infantil", text: "Expliquei o que queria e a JABOQUE cuidou do resto. Foi simples, claro e o evento foi um sucesso.", rating: 5 },
+              { name: "Sofia Lopes", event: "Evento corporativo", text: "Ter uma equipa responsável por toda a experiência tornou o planeamento muito mais eficiente.", rating: 5 },
             ].map((t, i) => (
               <motion.div
                 key={i}
@@ -302,17 +305,17 @@ export default function LandingPage() {
           </div>
           <Sparkles className="h-10 w-10 mx-auto mb-4 text-accent" />
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4">
-            Tem uma empresa de eventos?
+            Pronto para começar o seu evento?
           </h2>
           <p className="text-lg text-primary-foreground/90 max-w-xl mx-auto mb-8">
-            Cadastre-se gratuitamente e receba pedidos de orçamento de clientes em todo o país.
+            Crie o seu evento e deixe a JABOQUE preparar uma solução completa para si.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button size="xl" variant="accent" asChild>
-              <Link to="/registar?tipo=empresa">Cadastrar minha empresa <ArrowRight className="h-5 w-5" /></Link>
+              <Link to="/registar">Criar o meu evento <ArrowRight className="h-5 w-5" /></Link>
             </Button>
             <Button size="xl" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-              <Link to="/planos">Ver planos</Link>
+              <Link to="/como-funciona">Como funciona</Link>
             </Button>
           </div>
         </motion.div>

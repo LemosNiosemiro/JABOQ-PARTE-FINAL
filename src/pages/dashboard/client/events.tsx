@@ -115,7 +115,7 @@ export function ClientEvents() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Criar novo evento</DialogTitle>
-            <DialogDescription>Adicione os detalhes do seu evento para solicitar orçamentos.</DialogDescription>
+            <DialogDescription>Adicione os detalhes do seu evento para que a JABOQUE prepare a melhor solução para si.</DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">

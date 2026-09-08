@@ -20,14 +20,23 @@ interface GalleryItem {
 }
 
 const galleryItems: GalleryItem[] = [
-  { id: 1, title: "Uma noite para recordar", event: "Casamento de Ana e Miguel", location: "Lisboa", type: "photo", image: "https://images.pexels.com/photos/1488315/pexels-photo-1488315.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Junho de 2026" },
-  { id: 2, title: "A energia da pista", event: "JABOQUE Summer Fest", location: "Porto", type: "video", image: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Agosto de 2026", duration: "01:24", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-  { id: 3, title: "Detalhes que fazem a diferença", event: "Batizado da Leonor", location: "Braga", type: "photo", image: "https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Maio de 2026" },
-  { id: 4, title: "O começo de uma grande festa", event: "Aniversário de 30 anos", location: "Coimbra", type: "video", image: "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Abril de 2026", duration: "02:10", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-  { id: 5, title: "Celebrar em boa companhia", event: "Encontro JABOQUE & parceiros", location: "Lisboa", type: "photo", image: "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Março de 2026" },
-  { id: 6, title: "Um dia cheio de memórias", event: "Evento corporativo Nova Era", location: "Aveiro", type: "photo", image: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Fevereiro de 2026" },
-  { id: 7, title: "Luz, música e emoção", event: "Formatura 2026", location: "Porto", type: "video", image: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Janeiro de 2026", duration: "00:58", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-  { id: 8, title: "Uma mesa feita para celebrar", event: "Jantar de verão JABOQUE", location: "Cascais", type: "photo", image: "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200", date: "Dezembro de 2025" },
+  { id: 1, title: "Memórias JABOQUE 01", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-1.jpeg", date: "Setembro de 2026" },
+  { id: 2, title: "Memórias JABOQUE 02", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-2.jpeg", date: "Setembro de 2026" },
+  { id: 3, title: "Memórias JABOQUE 03", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-3.jpeg", date: "Setembro de 2026" },
+  { id: 4, title: "Memórias JABOQUE 04", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-4.jpeg", date: "Setembro de 2026" },
+  { id: 5, title: "Memórias JABOQUE 05", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-5.jpeg", date: "Setembro de 2026" },
+  { id: 6, title: "Memórias JABOQUE 06", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-6.jpeg", date: "Setembro de 2026" },
+  { id: 7, title: "Memórias JABOQUE 07", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-7.jpeg", date: "Setembro de 2026" },
+  { id: 8, title: "Memórias JABOQUE 08", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-8.jpeg", date: "Setembro de 2026" },
+  { id: 9, title: "Memórias JABOQUE 09", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-9.jpeg", date: "Setembro de 2026" },
+  { id: 10, title: "Memórias JABOQUE 10", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-10.jpeg", date: "Setembro de 2026" },
+  { id: 11, title: "Memórias JABOQUE 11", event: "Momentos do nosso evento", location: "Luanda", type: "photo", image: "/gallery/photo-11.jpeg", date: "Setembro de 2026" },
+  { id: 12, title: "Vídeo JABOQUE 01", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-1.jpeg", date: "Setembro de 2026", video: "/gallery/video-1.mp4" },
+  { id: 13, title: "Vídeo JABOQUE 02", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-2.jpeg", date: "Setembro de 2026", video: "/gallery/video-2.mp4" },
+  { id: 14, title: "Vídeo JABOQUE 03", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-3.jpeg", date: "Setembro de 2026", video: "/gallery/video-3.mp4" },
+  { id: 15, title: "Vídeo JABOQUE 04", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-4.jpeg", date: "Setembro de 2026", video: "/gallery/video-4.mp4" },
+  { id: 16, title: "Vídeo JABOQUE 05", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-5.jpeg", date: "Setembro de 2026", video: "/gallery/video-5.mp4" },
+  { id: 17, title: "Vídeo JABOQUE 06", event: "Momentos do nosso evento", location: "Luanda", type: "video", image: "/gallery/photo-6.jpeg", date: "Setembro de 2026", video: "/gallery/video-6.mp4" },
 ];
 
 const filters: { label: string; value: "all" | MediaType }[] = [

@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingBag, ArrowRight } from "lucide-react";
+import { ShoppingBag, ArrowRight, Building2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,17 +24,11 @@ export function ClientBookings() {
               <Card className="p-5">
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <div className="flex items-center gap-4 min-w-0">
-                    {booking.company?.logo_url ? (
-                      <img src={booking.company.logo_url} alt="" className="h-14 w-14 rounded-lg object-cover shrink-0" />
-                    ) : (
-                      <div className="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <span className="font-display font-bold text-primary">{booking.company?.name?.charAt(0)}</span>
-                      </div>
-                    )}
+                    <div className="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <Building2 className="h-6 w-6 text-primary" />
+                    </div>
                     <div className="min-w-0">
-                      <Link to={`/empresa/${booking.company?.slug}`} className="font-semibold hover:text-primary transition-colors truncate block">
-                        {booking.company?.name}
-                      </Link>
+                      <p className="font-semibold truncate">JABOQUE</p>
                       <p className="text-sm text-muted-foreground">
                         {booking.event?.title} - {formatDate(booking.event_date)}
                       </p>
@@ -67,8 +60,8 @@ export function ClientBookings() {
         <EmptyState
           icon={ShoppingBag}
           title="Nenhum orçamento solicitado"
-          description="Explore fornecedores e solicite orçamentos para os seus eventos."
-          action={<Button asChild><Link to="/explore">Explorar fornecedores <ArrowRight className="h-4 w-4" /></Link></Button>}
+          description="Conheça os serviços JABOQUE e solicite apoio para os seus eventos."
+          action={<Button asChild><a href="/explore">Explorar serviços <ArrowRight className="h-4 w-4" /></a></Button>}
         />
       )}
     </div>
